@@ -31,9 +31,9 @@ class Pstories extends Component {
         <div id="box-lg">
           <div className="container">
             <div className="row">
-            <React.Fragment>
-                    <div className="col-md-10">
-                    {
+
+              <div className="col-md-10">
+              {
                 this.props.newPostList && this.props.newPostList.map((postData, index) => (
 
                   
@@ -75,49 +75,47 @@ class Pstories extends Component {
                 
                 )
               }
-
-            { !this.props.newPostList && this.props.post_list_by_id && this.props.post_list_by_id.map((postData,index)=> (
-               
-                      <div id="comment-boxes">
-                        <div className="row">
-                          <div id="comment-wrapper">
-                            <div className="col-md-12">
-                              <div id="comment-notif">
-                                <p>
-                                  {" "}
-                                  {postData[`posts-comments`].length} comments
-                                </p>
-                                <p>
-                                  {" "}
-                                  {timeAgo.ago(new Date(postData.createdAt))}
-                                </p>
-                              </div>
-                            </div>
-                            <div className="col-md-12">
-                              <div id="comment-box">
-                                <div id="comment-title">
-                                  <h5>
-                                
-                                    <Link to={`/PeopleStoryDetail/${postData.id}`} >
-                                      <strong>{postData.topic}</strong>
-                                    </Link>
-                                  </h5>
-                                </div>
-                                <hr />
-                                <div id="comment-content">
-                                  <p>{postData.post}</p>
-                                </div>
-                              </div>
-                              <hr />
-                            </div>
+              { !this.props.newPostList && this.props.post_list_by_id && this.props.post_list.map((postData,index)=> (
+                
+                  <div id="comment-boxes">
+                    <div className="row">
+                      <div id="comment-wrapper">
+                        <div className="col-md-12">
+                          <div id="comment-notif">
+                     
+                            <p>  {timeAgo.ago(new Date(postData.createdAt))}</p>
                           </div>
                         </div>
+                        <div className="col-md-12">
+                          <div id="comment-box">
+                            <div id="comment-title">
+                              <a href="#">
+                                <h5>
+                                <Link to={`/MyStoryDetail/${postData.id}`}>
+                                  <strong>{postData.topic}</strong>
+                                  </Link>
+                                </h5>
+                              </a>
+                            </div>
+                            <hr />
+                            <div id="comment-content">
+                              <p>
+                              
+                              {postData.post}
+                              </p>
+                            </div>
+                          </div>
+                          <hr />
+                        </div>
                       </div>
-                   
+                    </div>
+                  </div>
+              
                 ))}
-                 </div>
-                    
-                    </React.Fragment>
+                </div>
+
+
+
             </div>
 
             

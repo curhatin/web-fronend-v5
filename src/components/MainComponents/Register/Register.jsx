@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./Style.css";
 import axios from 'axios'
+import { Link } from 'react-router-dom'
 
 class Register extends Component {
   constructor(props) {
@@ -42,9 +43,11 @@ onChange(e) {
                 <div className="col-md-8">
                   <div id="register-right">
                     <div id='login-form'>
+                    <Link to="/" >
                       <a href='#'>
                         <p>HOME</p>
                       </a>
+                      </Link>
                       <h4>
                         {" "}
                         Get <span>STARTED</span>{" "} <br/>

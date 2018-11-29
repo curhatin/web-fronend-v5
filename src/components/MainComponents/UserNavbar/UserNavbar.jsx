@@ -16,7 +16,7 @@ class UserNavbar extends Component {
   }
 
   handleOnChange = async e => {
-    this.setState({
+    await this.setState({
         [e.target.name] : e.target.value
     })
    await this.props.searchDataPost({

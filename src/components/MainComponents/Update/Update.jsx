@@ -8,7 +8,7 @@ class Update extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      tagId: '',
+      tagId: "",
       topic: "",
       post: ""
     };
@@ -20,12 +20,19 @@ class Update extends Component {
       [e.target.name] : e.target.value
   })
   }
+  
+  handleClick = id => {
+    this.setState({
+      tagId: id
+    })
+    
+  }
 
 
   UpdateDataHandle = () => {
     this.props.updatePostById({
       id: this.props.id,
-      tagId: this.props.tagId,
+      tagId: this.state.tagId,
       post: this.state.post,
       topic: this.state.topic,
       token: localStorage.token
@@ -73,19 +80,19 @@ class Update extends Component {
                           </div>
                           <div className="col-md-10">
                           <div id="create-catagories">
-                                <a  href="#" onClick={() => this.UpdateDataHandle(1)}>
+                                <a  href="#" onClick={() => this.handleClick(1)}>
                                   <p  > Education</p>
                                 </a>
-                                <a  href="#" onClick={() => this.UpdateDataHandle(2)}>
+                                <a  href="#" onClick={() => this.handleClick(2)}>
                                   <p> Sex </p>
                                 </a>
-                                <a   href="#" onClick={() => this.UpdateDataHandle(3)}>
+                                <a   href="#" onClick={() => this.handleClick(3)}>
                                   <p> Social life </p>
                                 </a>
-                                <a  href="#" onClick={() => this.UpdateDataHandle(4)}>
+                                <a  href="#" onClick={() => this.handleClick(4)}>
                                   <p> Religion </p>
                                 </a>
-                                <a href="#" onClick={() => this.UpdateDataHandle(5)}>
+                                <a href="#" onClick={() => this.UhandleClick(5)}>
                                   <p> Health </p>
                                 </a>
                                 <a href="#" onClick={() => this.UpdateDataHandle(6)}>

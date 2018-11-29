@@ -5,6 +5,7 @@ import Mstory from "../MainComponents/Mstory/Mstory";
 import {connect} from 'react-redux'
 import {login} from '../../actions/authActions'
 import {fetchDataPostById} from '../../actions/postActions'
+import {searchDataPost} from '../../actions/postActions'
 
 
 
@@ -43,7 +44,8 @@ class Mystories extends Component {
 const mapStateToProps = state => ({
   isAuthenticated : state.auth.isAuthenticated,
   post_list_by_id : state.post.post_list_by_id,
-  token: state.auth.token
+  token: state.auth.token,
+  newPostList : state.post.newPostList
 })
 
-export default connect(mapStateToProps,{login,fetchDataPostById})(Mystories)
+export default connect(mapStateToProps,{login,fetchDataPostById,searchDataPost})(Mystories)

@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 import {connect} from 'react-redux'
 import {login} from '../../../actions/authActions'
 import {fetchDataPostById} from '../../../actions/postActions'
+import {searchDataPost} from '../../../actions/postActions'
 
 
 
@@ -28,13 +29,17 @@ class Mstory extends Component {
     
   }
   render() {
+     console.log(this.props.newPostList)
     return (
         <div id="peoplestories">
           <div id="box-lg-1">
             <div className="container">
               <div className="row">
-              { this.props.post_list_by_id && this.props.post_list_by_id.map((postData,index)=> (
-                <div className="col-md-10">
+              <div className="col-md-10">
+              {
+                this.props.newPostList && this.props.newPostList.map((postData, index) => (
+
+                  
                   <div id="comment-boxes">
                     <div className="row">
                       <div id="comment-wrapper">
@@ -68,8 +73,49 @@ class Mstory extends Component {
                       </div>
                     </div>
                   </div>
-                </div>
+                
+                )
+                
+                )
+              }
+              { !this.props.newPostList && this.props.post_list_by_id && this.props.post_list_by_id.map((postData,index)=> (
+                
+                  <div id="comment-boxes">
+                    <div className="row">
+                      <div id="comment-wrapper">
+                        <div className="col-md-12">
+                          <div id="comment-notif">
+                     
+                            <p>  {timeAgo.ago(new Date(postData.createdAt))}</p>
+                          </div>
+                        </div>
+                        <div className="col-md-12">
+                          <div id="comment-box">
+                            <div id="comment-title">
+                              <a href="#">
+                                <h5>
+                                <Link to={`/MyStoryDetail/${postData.id}`}>
+                                  <strong>{postData.topic}</strong>
+                                  </Link>
+                                </h5>
+                              </a>
+                            </div>
+                            <hr />
+                            <div id="comment-content">
+                              <p>
+                              
+                              {postData.post}
+                              </p>
+                            </div>
+                          </div>
+                          <hr />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+              
                 ))}
+                </div>
                 <div className="col-md-2">
                   <div id="topic-box">
                     <div>
@@ -124,7 +170,8 @@ class Mstory extends Component {
 const mapStateToProps = state => ({
   isAuthenticated : state.auth.isAuthenticated,
   post_list_by_id : state.post.post_list_by_id,
-  token: state.auth.token
+  token: state.auth.token,
+  newPostList : state.post.newPostList
 })
 
-export default connect(mapStateToProps,{login,fetchDataPostById})(Mstory)
+export default connect(mapStateToProps,{login,fetchDataPostById,searchDataPost})(Mstory)

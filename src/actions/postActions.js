@@ -4,7 +4,8 @@ import {
     FETCH_DATA_POST_USER_BY_ID,
     FETCH_POST_BY_POST_ID,
     DELETE_POST_BY_ID,
-    UPDATE_POST_BY_ID
+    UPDATE_POST_BY_ID,
+    SEARCH_DATA
 } from "./types"
 import axios from "axios";
 
@@ -118,4 +119,19 @@ export const updatePostById = data => dispatch => {
             })
         })
         .catch(err => console.log(err))
+}
+
+export const searchDataPost = data => dispatch => {
+    axios.get(`https://curhatin.herokuapp.com/post/search?post=${data.message}`,{
+        headers: {
+            authorization: `Bearer ${data.token}`
+        }
+    })
+    .then(res => {
+        dispatch({
+            type: SEARCH_DATA,
+            payload: res.data
+        })
+    })
+    .catch(err => console.log(err))
 }

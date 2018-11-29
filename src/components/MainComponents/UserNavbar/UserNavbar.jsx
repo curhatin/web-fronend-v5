@@ -2,13 +2,30 @@ import React, { Component } from "react";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "../UserNavbar/Style.css";
 import {Link} from 'react-router-dom'
+import {connect} from 'react-redux'
+import {login} from '../../../actions/authActions'
+import {searchDataPost} from '../../../actions/postActions'
+
 
 class UserNavbar extends Component {
   constructor(props) {
     super(props);
-    this.state = {};
+    this.state = {
+      message: ''
+    };
+  }
+
+  handleOnChange = async e => {
+    this.setState({
+        [e.target.name] : e.target.value
+    })
+   await this.props.searchDataPost({
+      message: this.state.message,
+      token: this.props.token
+    })
   }
   render() {
+   
     return (
       <div>
         <div id='UserNavbar'>
@@ -21,7 +38,9 @@ class UserNavbar extends Component {
                             <input
                               type="text"
                               className="form-control"
-                              id="name"
+                              name="message" 
+                              value={this.state.message} 
+                              onChange={this.handleOnChange}
                               placeholder="Search ..... "
                             />
                           </div>
@@ -54,4 +73,11 @@ class UserNavbar extends Component {
   }
 }
 
-export default UserNavbar;
+const mapStateToProps = state => ({
+  isAuthenticated : state.auth.isAuthenticated,
+  token: state.auth.token,
+  newPostList : state.post.newPostList
+
+})
+
+export default connect(mapStateToProps,{login,searchDataPost})(UserNavbar)

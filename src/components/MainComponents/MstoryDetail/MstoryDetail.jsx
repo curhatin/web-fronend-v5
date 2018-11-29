@@ -45,7 +45,7 @@ class MstoryDetail extends Component {
               }
           })
           .then(res => {
-            this.props.history.push(`/MyStoryDetail/${res.data.data.comment.postId}`)
+            this.props.history.push("/Mystories")
           })
           .catch(err => console.log(err))
   }
